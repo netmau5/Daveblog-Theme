@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+	<meta charset="utf-8">
+    <link rel="icon" href="/images/favicon.png" type="image/x-png">
+	<title>{PageTitle}</title>
+	<link href='http://fonts.googleapis.com/css?family=Exo:200,300|Stint+Ultra+Condensed' rel='stylesheet' type='text/css'>
+	<link href="http://davejafari-blog.s3-website-us-east-1.amazonaws.com/css/main.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<aside id='posterous-header'>{block:PosterousHeader /}</aside>
+<div class="container">
+	<header class='nav-bar'>
+		<nav class='{PageType} {Tag}'>
+			<ul>
+			<li class='{block:Homepage}selected{/block:Homepage}'><a href="/" alt='Home'>Home</a></li>
+			<li class='this-is-my-story'><a href="/tag/thisismystory" alt='My Story'>My Story</a></li>
+			<li class='projects'><a href="/tag/projects" alt='Projects'>Projects</a></li>
+			<li class='{block:Page}selected{/block:Page}'><a href="http://blog.davejafari.com/pages/about-me" alt='About Me'>About Me</a></li>
+			<li><a class='urban-coding' href="http://www.urbancoding.net" alt='Urban Coding'>UC</a></li>
+			</ul>
+		</nav>
+		<h1><a href='http://www.davejafari.com'>Dave Jafari</a></h1>
+	</header>
+</div>
+
+<div class='container'>
+	<div class='post-info'>
+		{block:Tag}
+			<header class='tag-category'>
+				<h2>{Tag}</h2>
+			</header>
+		{/block:Tag}
+
+		{block:Private}
+			<aside class="private"><h1>Private Post</h1></aside>
+		{/block:Private}
+	</div>
+</div>
+
+{block:Posts}
+
+{block:List}
+
+<div class="container">
+	<div class='post-summaries'>
+		<div class='post-summary'>
+			<div class='info'>
+				<time pubdate datetime=""><span class='day'>{Month} {DayOfMonth}</span>, <span class='year'>{Year}</span></time>
+			
+				<span class='responses'><i class='icon'></i><a href='{Permalink}#Comments'>{ResponseCount} Responses</a></span>
+			
+				{block:PostImage size='175' dimension='width'}
+					<img src="{PostImageURL}" width='175' height='125' />
+				{/block:PostImage}
+			</div>
+			
+			<div class='content'>
+				{block:Title}
+					<h2 class="post-title"><a href="{Permalink}">{Title}</a></h2>
+				{/block:Title}
+				{block:BodyExcerpt strip_tags="true" excerpt_size="300"}  
+					{BodyExcerpt}  
+					{block:BodyExcerptReadMore}  
+						<!--<a href="{Permalink}#more">Read more »</a>-->
+					{/block:BodyExcerptReadMore}  
+				{/block:BodyExcerpt}
+			</div>
+		</div>
+	</div>
+</div>
+
+{/block:List}
+
+{block:Show}
+
+<div class="container">
+
+	<article class='post'>
+		
+		{block:EditBox}
+			{EditBoxContents}
+		{/block:EditBox}
+		
+		{block:Title}
+			<header>
+				<h2><a href="{Permalink}">{Title}</a></h2>
+			</header>
+		{/block:Title}
+
+		<div class='content'>
+			{Body}
+			<p>Follow me on Twitter <a href="http://www.twitter.com/netmau5" target="_blank">here</a>, or don't. I don't care (<a href="http://www.youtube.com/watch?v=q-RLqLx1iYI" target="_blank">it's a Bama thing</a>).</p>
+		</div>
+	</article>
+
+	{block:Sharing}
+		<section class="share">
+			<div class="facebook_like">{block:FbLike /}</div>
+			{block:Tweet /}
+		</section>
+	{/block:Sharing}
+
+	{block:Responses}
+	
+		<a name="Comments"></a>
+		<section class='comments'>
+			
+			{block:ResponsesList}
+				{ResponseWidget}
+			{/block:ResponsesList}
+		
+			<!--
+			<header>
+				<h3>{ResponseCount} Comments</h3>
+			</header>
+			-->
+		
+			{block:ResponsesShow}
+				{ResponseWidget}
+				{Responses}
+				{ResponseForm}
+			{/block:ResponsesShow}
+			
+		</section>
+
+	{/block:Responses}
+
+</div>
+
+<div class="metadata">
+	<footer>
+		<time pubdate datetime="">{ShortMonth} {DayOfMonth}, {Year}</time>
+		<ul>
+			{block:TagList}
+			{block:TagListing}
+			<li><a href='{TagLink}'>{TagName}</a></li>
+			{/block:TagListing}
+			{/block:TagList}
+		</ul>
+		<a href="#" class="link-top">&uarr;</a>
+	</footer>
+</div>	
+
+{/block:Show}
+{/block:Posts}
+
+<div class='pagination'>
+	{block:NextPage}
+	  <a href="{NextPage}">Older Posts &rarr;</a>
+	{/block:NextPage}
+</div>
+
+<div class="footer">
+	<footer>
+		<section class='dave'>
+			<div class='about-me'>
+				<h3>About Me</h3>
+				<img src='http://davejafari-blog.s3-website-us-east-1.amazonaws.com/img/headshot.jpg' />
+				<p>I'm a programmer aspiring to build a better mousetrap. I obsess over creating engaging experiences, meaningful tools, and a better tomorrow. <a href='http://blog.davejafari.com/pages/about-me'>Read More</a></p>
+			</div>
+			<div class='where-i-am'>
+				<h3>Where I Am</h3>
+				<menu type="list">
+					<li class='subscribe'><span class='icon'></span><a href='http://feeds.feedburner.com/UrbanCoder' alt='subscribe'>Subscribe</a> to the blog</li>
+					<li class='twitter'><span class='icon'></span><a href='http://www.twitter.com/netmau5' alt='twitter'>Follow</a> me on Twitter</a></li>
+					<li class='google'><span class='icon'></span><a href='https://plus.google.com/u/0/114092429991627858950' alt='google plus'>+Dave</a> on Google+</li>
+					<li class='linked-in'><span class='icon'></span><a href='http://www.linkedin.com/in/davejafari' alt='linked in'>Connect</a> with me on LinkedIn</li>
+					<li class='github'><span class='icon'></span><a href='https://github.com/netmau5' alt='github'>Git</a> my code on GitHub</li>
+					<li class='email'><span class='icon'></span><a href='mailto:dave@urbancoding.net' alt='email'>Contact</a> me directly</li>
+				</menu>
+			</div>
+			<div class='what-i-said'>
+				<h3>What I've Said</h3>
+				{block:TagList}
+	                <ul>
+	                  {block:TagListing collapsible="true" count="10" action_id="see_more_tags"}
+	                    {block:TagItem}
+	                      <li><a href="{TagLink}">{TagName}</a></li>
+	                    {/block:TagItem}
+	                    {block:TagItemSelected}
+	                      <li class="selected"><a href="{TagLink}">{TagName}</a></li>
+	                    {/block:TagItemSelected}
+						{block:TagListingMore}
+	                      <li><a href="#" id="see_more_tags">View all {NumTags} tags &raquo;</a></li>
+	                    {/block:TagListingMore}
+	                  {/block:TagListing}
+	                </ul>
+	            {/block:TagList}
+			</div>
+		</section>
+		<section class='advertisement'>
+			<p>Urban Coding is a web, mobile, and software development company. <a href='http://www.urbancoding.net'>Let's build something together.</a></p>
+		</section>
+	</footer>
+</div>
+</body>

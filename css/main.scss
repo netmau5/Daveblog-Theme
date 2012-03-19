@@ -1,0 +1,554 @@
+$color-link: #46B1E1;
+$color-tag: black;
+$color-quote: #6b6b6b;
+$color-post-title: black;
+$color-post-subtitle: black;
+$color-body: black;
+$color-footer: #d6d6d6;
+$color-recess: #6b6b6b;
+$color-footer-recess: #a6a6a6;
+
+$color-bg-body: white;
+$color-bg-metadata: #f5f5f5;
+$color-bg-footer: black;
+$color-bg-footer2: #242424;
+
+@import "social-icon/*.png";
+@import "uc-icon/*.png";
+
+@mixin font-title1 {
+	font-family: "Exo", "Lucida Grande", "Helvetica Neue", Helvetica;
+	font-weight: 300;
+}
+
+@mixin font-title2 {
+	font-family: "Exo", "Lucida Grande", "Helvetica Neue", Helvetica;
+	font-weight: 200;
+}
+
+@mixin font-tldr { font-family: "Stint Ultra Condensed", "Andale Mono", Georgia; }
+
+@mixin font-body { font-family: Georgia; font-size: 18px; line-height: 27px; }
+
+@mixin font-minor { font-family: Verdana; }
+
+@mixin transition($type) {
+  -webkit-transition: #{$type} 200ms linear;
+  -moz-transition: #{$type} 200ms linear;
+  -o-transition: #{$type} 200ms linear;
+  transition: #{$type} 200ms linear;
+}
+
+@mixin circular {
+  -webkit-border-radius: 99999px;
+  -moz-border-radius: 99999px;
+  border-radius: 99999px;
+}
+
+@import "bootstrap.min";
+
+a { color: $color-link; }
+
+blockquote { 
+  font-family: Georgia !important;
+  font-size: 18px !important;
+  line-height: 27px !important;
+  color: $color-quote; 
+}
+
+.container { width: 960px; }
+
+li { margin-top: 0; }
+
+.posterousGalleryMainDiv { margin: 18px 0; }
+.posterousGalleryLink { display: none; }
+#posterous-header {
+  display: none;
+}
+
+::selection { background-color: $color-link; color: white; }
+
+hr {
+  display: block;
+  height: 70px;
+  margin: 5px 0;
+  border: none;
+  background: url('../img/hr_lalala.png') center top no-repeat white;
+}
+
+article.post, section.share, section.comments {
+  @extend .span8;
+  @extend .offset2;
+}
+
+.post-summaries {
+  margin-bottom: 30px;
+  
+  .post-summary {
+    @extend .clearfix;
+    margin-bottom: 30px;
+    
+    .info {
+      float: left;
+      width: 200px;
+      line-height: 24px;
+      font-size: 14px;
+      
+      time { 
+        @include font-title2;
+        text-transform: uppercase;
+        color: $color-recess;
+        letter-spacing: 2px;
+        .day { }
+        .year { }
+      }
+      
+      span.responses {
+        display: block;
+        font-style: italic;
+        @include font-title2;
+        letter-spacing: 2px;
+        margin-bottom: 4px;
+        
+        .icon {
+          height: 15px;
+          margin-top: 4px;
+          background: url(http://asset1.posterous.com/images/site/response_sprite.png?1321299640) no-repeat;
+          background-position: -16px -15px;
+          float: left;
+          width: 16px;
+          margin-right: 9px;
+        }
+      }
+      
+      img {
+        border: 1px solid $color-recess;
+      }
+    }
+
+    .content {
+      margin-left: 280px;
+      @include font-body;
+      
+      h2 {
+        @include font-title1;
+        font-size: 24px;
+        line-height: 32px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.post-info {
+  margin: 20px 0 0 280px;
+  
+  header.tag-category h2 {
+    @include font-tldr;
+    letter-spacing: 2px;
+    font-size: 32px;
+    margin: 0 0 30px 0;
+  }
+}
+
+header.nav-bar {
+  h1 {
+    
+    margin: 2px 0;
+    
+    a {
+      color: $color-body;
+      @include font-title1;
+      font-size: 20px;
+      
+      &:hover {
+        text-decoration: none;
+        color: $color-body;
+      }
+    }
+  }
+  nav {
+    @include font-title2;
+    font-size: 20px;
+    
+    .selected,
+    &.tag.this.is.my.story li.this-is-my-story,
+    &.tag.projects li.projects {
+      @include font-title1;
+      border-color: $color-link;
+      a {
+        color: $color-post-title;
+      }
+    }
+    
+    ul {
+      float: right;
+      margin: 4px 0;
+      li {
+        list-style-type: none;
+        float: left;
+        margin-left: 35px;
+        border-color: $color-bg-body;
+        border-top-width: 6px;
+        border-top-style: solid;
+        margin-top: -19px;
+        padding-top: 14px;
+        a {
+          color: $color-recess;
+          &:hover, &:active {
+            color: $color-post-title;
+            text-decoration: none;
+            @include transition(color);
+          }
+          &:active { border-color: $color-link; }
+        }
+        &:hover, &:active {
+          border-color: $color-recess;
+          @include transition(border-color);
+        }
+        &:active { 
+          border-color: $color-link; 
+        }
+        
+        a.urban-coding {
+          height: 40px;
+          width: 40px;
+          @include uc-icon-sprite(logo-uc-small);
+          text-indent: -9999px;
+          position: relative;
+          top: -10px;
+          display: block;
+        }
+        
+        a.urban-coding:hover {
+          @include uc-icon-sprite(logo-uc-small-hover);
+        }
+      }
+    }
+  }
+  padding: 15px 0;
+  border-bottom: 1px solid black;
+  margin-bottom: 15px;
+}
+
+article.post {
+  @include font-body;
+  
+  header {
+    line-height: 32px;
+    h2 {
+      @include font-title1;
+      font-size: 30px;
+      margin: 24px 0;
+    }
+  }
+  
+  .subtitle {
+    @include font-tldr;
+    font-size: 30px;
+    color: $color-recess;
+    margin: 24px 0;
+    line-height: 32px;
+    
+    .chapter { @include font-tldr; }
+  }
+  
+  .caption {
+    color: $color-recess;
+    font-size: 14px;
+    margin: 4px 0;
+  }
+  
+  p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+section.share {
+  @include font-body;
+  line-height: 27px;
+  margin-bottom: 18px;
+  height: 20px;
+  
+  & > * { float: left; }
+  .posterous_tweet_button {
+    position: relative;
+    top: 3px;
+  }
+}
+
+section.comments {
+  @include font-body;
+  line-height: 27px;
+  clear: both;
+  
+  h3 {
+    @include font-title2;
+  }
+  
+  .commentunit {
+    
+    position: relative;
+    left: -64px;
+    padding-left: 64px;
+    
+    .comment_label {
+      position: relative;
+      
+      .comment_date { display: none; }
+      
+      .comment_avatar {
+        position: absolute;
+        left: -64px;
+        margin: 0;
+      }
+    }
+
+    .comment {
+      @include font-body;
+
+      .commentname {
+        @include font-title2;
+        font-size: 18px;
+        line-height: 27px;
+        color: $color-recess;
+      }
+    }
+  }
+  
+  .p_comment, .p_response {
+    @extend .commentunit;
+    margin-bottom: 20px;
+    
+    &.p_like { margin-bottom: 20px; }
+    
+    .p_info {
+      @include font-title2;
+      font-size: 18px;
+      line-height: 27px;
+      color: $color-recess;
+      
+      .p_icon, time {
+        display: none;
+      }
+    }
+    
+    .p_comment_body {
+      margin-left: 0;
+
+      .p_profile_photo {
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        left: 0px;
+        top: 8px;
+        margin: 0;
+        img {
+          width: 48px;
+          height: 48px;
+          @include circular;
+        }
+      }
+
+      .p_comment_text {
+        @include font-body;
+        margin-left: 0;
+      }
+    }
+    
+  }
+  
+  .p_comment_form h1 {
+    @include font-title2;
+  }
+}
+
+.metadata {
+  background-color: $color-bg-metadata;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  
+  color: $color-recess;
+  a {
+    color: $color-recess;
+    &:hover {
+      text-decoration:none;
+    }
+  }
+  
+  footer {
+    @extend .container;
+    font-size: 16px;
+    line-height: 35px;
+    time {
+      float: left;
+      @include font-title2;
+      width: 170px;
+      border-left: 1px solid #e5e5e5;
+      padding-left: 10px;
+      text-transform: uppercase;
+    }
+    ul {
+      float: left;
+      border-left: 1px solid #e5e5e5;
+      @include font-title1;
+      margin: 0 0;
+      height: 35px;
+      padding-left: 10px;
+      li {
+        list-style-type: none;
+        float:left;
+        margin-right: 15px;
+      }
+    }
+    .link-top {
+      float: right;
+      @include font-title1;
+      border-right: 1px solid #e5e5e5;
+      padding: 0 12px;
+      
+      &:hover {
+        background-color: $color-recess;
+        color: white;
+      }
+    }
+  }
+  
+}
+
+.pagination {
+  @extend .container;
+  a { 
+    float: right;
+    @include font-title2;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+}
+
+.footer {
+  background-color: $color-bg-footer;
+  
+  footer {
+    @extend .container;
+    color: $color-footer;
+    position: relative; 
+    padding-bottom: 20px;
+    
+    
+    .dave {
+      @extend .span7;
+      float: left;
+      
+      h3 { 
+        @include font-title2;
+        font-size: 20px;
+        color: $color-footer-recess;
+      }
+      
+      img {
+        width: 110px;
+        height: 110px;
+        float: left;
+        background-color: white;
+        @include circular;
+      }
+      
+      p {
+        margin-left: 143px;
+      }
+      
+      .about-me {
+        border-bottom: 1px solid $color-bg-footer2;
+        @include font-title2;
+      }
+      
+      .where-i-am {
+        border-right: 1px solid $color-bg-footer2;
+        padding-right: 20px;
+        
+        .icon { 
+          width: 16px;
+          height: 16px; 
+          display: block; 
+          float: left; 
+          top: 5px; 
+          margin-right: 5px;
+          position: relative; 
+        }
+        
+        .subscribe .icon { @include social-icon-sprite(rss); }
+        .twitter .icon { @include social-icon-sprite(twitter); }
+        .google .icon { @include social-icon-sprite(google); }
+        .linked-in .icon { @include social-icon-sprite(linkedin); }
+        .github .icon { @include social-icon-sprite(github); }
+        .email .icon { @include social-icon-sprite(email); }
+        
+        .subscribe a { color: #f27821; }
+        .twitter a { color: #85dff4; }
+        .google a { color: #ff2626; }
+        .linked-in a { color: #55aace; }
+        .github a { color: #ffffff; }
+        .email a { color: #3fa0d0; }
+        
+      }
+      
+      .what-i-said {
+        margin-left: 20px;
+        
+        ul {
+          padding: 0;
+          
+          li { list-style-type: none; line-height: 24px; }
+          
+          a {
+            padding: 4px;
+            background-color: #333;
+            color: $color-footer;
+            font-size: 14px;
+            letter-spacing: 3px;
+            
+            &:hover {
+              color: white;
+              text-decoration: none; 
+            }
+            
+            &#see_more_tags {
+              background: none;
+              letter-spacing: 1px;
+              
+              &:hover{
+               text-decoration: underline; 
+              }
+            }
+          }
+        }
+      }
+
+      .where-i-am, .what-i-said {
+        float: left;
+        font-size: 14px;
+        menu {
+          padding-left: 0;
+          li { list-style-type: none; }
+        }
+      }
+      
+    }
+    
+    .advertisement {
+      @extend .span5;
+      @include font-title2;
+      background: url('../img/logo-uc-big.jpg') center -15px no-repeat $color-bg-footer2;
+      float: left;
+      padding: 190px 20px 0 20px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+    
+  }
+  
+}
